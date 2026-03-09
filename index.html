@@ -44,75 +44,75 @@ input[type=number]{font-size:18px;padding:8px;width:70px;text-align:center;borde
 
 <!-- ===== LOGIN ===== -->
 <div id="pg-login" class="page">
-<div class="card"><h1>TrajBias Human Evaluation</h1>
-<p>You will evaluate 100 AI coding agent trajectories (one at a time, randomized order).</p>
+<div class="card"><h1>TrajBias 人工评估</h1>
+<p>感谢参与！你将逐条评估100条AI编程助手的执行轨迹（随机顺序）。</p>
 <div style="margin-top:14px">
-<label style="font-weight:600">Your rater ID:</label>
+<label style="font-weight:600">你的评分者编号：</label>
 <input type="number" id="rater-input" min="1" max="10" value="1">
-<button class="btn" style="margin-left:10px" onclick="goTraining()">Start Training</button>
+<button class="btn" style="margin-left:10px" onclick="goTraining()">进入培训 &rarr;</button>
 </div></div></div>
 
 <!-- ===== TRAINING ===== -->
 <div id="pg-train" class="page" style="display:none">
-<div class="card"><h2>Training (please read carefully, ~3 min)</h2>
-<p>You will see AI coding agent execution traces — one trajectory per page. Score each on a 1-5 scale.</p></div>
-<div class="card"><h3>What are you looking at?</h3>
+<div class="card"><h2>评分培训（请仔细阅读，约3分钟）</h2>
+<p>你将看到AI编程助手解决GitHub bug的过程记录。每页显示一条轨迹，请打1-5分。</p></div>
+<div class="card"><h3>你在看什么？</h3>
 <ul>
-<li><b>Agent</b> (blue) = AI's actions and reasoning</li>
-<li><b>Env</b> (green) = Terminal/system output</li>
-<li><b>System</b> (orange) = Task description</li>
+<li><b>Agent</b>（蓝色）= AI的操作和思考</li>
+<li><b>Env</b>（绿色）= 终端/系统的输出</li>
+<li><b>System</b>（橙色）= 任务说明</li>
 </ul>
-<p>Typical flow: read code -> understand bug -> write fix -> test.</p></div>
-<div class="card"><h3>Scoring Rubric</h3>
+<p>Agent通常会：读代码 &rarr; 理解bug &rarr; 写修复 &rarr; 测试验证。</p></div>
+<div class="card"><h3>评分标准</h3>
 <div class="score-ref">
-<b>5</b> Excellent: Efficiently locates the problem, correct fix, minimal steps<br>
-<b>4</b> Good: Solves the problem but with minor detours or extra steps<br>
-<b>3</b> Fair: Makes progress but has clear shortcomings (e.g., incomplete fix)<br>
-<b>2</b> Poor: Multiple errors, repeated actions, many wasted steps<br>
-<b>1</b> Very Poor: Almost no effective progress</div></div>
-<div class="card"><h3>What to focus on</h3><ul>
-<li><b>Efficiency</b>: Are steps concise? Any redundant actions?</li>
-<li><b>Correctness</b>: Are actions reasonable? Any wrong commands?</li>
-<li><b>Error handling</b>: Does the agent recover well from errors?</li>
-<li><b>Result</b>: Is the bug fixed?</li></ul>
-<p style="margin-top:8px;color:#888">You don't need to fully understand the code — focus on the agent's behavior patterns.</p></div>
-<div class="card"><h3>Examples</h3>
-<div class="ex"><b>5</b>: Directly finds bug file -> pinpoints issue -> writes correct fix -> tests pass. No wasted steps.</div>
-<div class="ex"><b>4</b>: Finds and fixes the bug, but reads a few irrelevant files along the way.</div>
-<div class="ex ex-bad"><b>2</b>: Searches repeatedly in wrong files, tries 3 fixes that all fail.</div></div>
-<div class="card"><h3>Important</h3><ul>
-<li>Each trajectory is independent — score it on its own merit</li>
-<li>Go with your <b>first impression</b></li>
-<li>You can close anytime — <b>progress auto-saves</b></li>
-<li>Truncated content ([truncated]) is normal</li></ul></div>
+<b>5分</b> 优秀：高效定位问题，修复正确，步骤精简<br>
+<b>4分</b> 良好：解决了问题，但有小弯路或多余步骤<br>
+<b>3分</b> 一般：有进展，但有明显不足（如修复不完整）<br>
+<b>2分</b> 较差：多处错误、重复操作、大量无效步骤<br>
+<b>1分</b> 很差：几乎没有有效进展</div></div>
+<div class="card"><h3>重点关注</h3><ul>
+<li><b>效率</b>：步骤是否精简？有没有反复做同一件事？</li>
+<li><b>正确性</b>：操作合理吗？命令有没有打错？</li>
+<li><b>错误处理</b>：遇到错误时处理得好吗？</li>
+<li><b>结果</b>：问题解决了吗？</li></ul>
+<p style="margin-top:8px;color:#888">不需要完全看懂代码，重点看agent的行为模式。</p></div>
+<div class="card"><h3>示例</h3>
+<div class="ex"><b>5分</b>：直接找到bug &rarr; 精准修复 &rarr; 测试通过。全程无多余步骤。</div>
+<div class="ex"><b>4分</b>：找到bug并修复，但中间多看了几个不相关的文件。</div>
+<div class="ex ex-bad"><b>2分</b>：反复在错误的文件中查找，多次修复失败。</div></div>
+<div class="card"><h3>注意事项</h3><ul>
+<li>每条轨迹<b>独立评分</b>，按自身质量打分</li>
+<li>按<b>第一直觉</b>打分，不用纠结</li>
+<li>可以随时关闭页面，<b>进度自动保存</b>，下次继续</li>
+<li>内容有截断[truncated]是正常的</li></ul></div>
 <div class="card" style="text-align:center">
-<button class="btn" onclick="startEval()">I understand, start evaluation</button></div>
+<button class="btn" onclick="startEval()">我已了解，开始评分 &rarr;</button></div>
 </div>
 
 <!-- ===== EVAL ===== -->
 <div id="pg-eval" class="eval-wrap" style="display:none">
 <div class="topbar">
-  <div><b id="item-label">Trajectory 1/100</b> &nbsp;<span id="rater-label"></span></div>
+  <div><b id="item-label">第 1/100 条</b> &nbsp;<span id="rater-label"></span></div>
   <div style="text-align:right"><span id="done-label">0/100</span><div class="pbar"><div class="pfill" id="pfill"></div></div></div>
 </div>
 <div class="traj-pan" id="traj-panel">
-  <h3 id="traj-header">Trajectory</h3>
+  <h3 id="traj-header">轨迹</h3>
   <div id="traj-content"></div>
 </div>
 <div class="bot">
-  <div class="sg"><label>Score</label><div class="sbtns" id="btns-score"></div></div>
-  <button class="btn" id="gobtn" disabled onclick="submitScore()">Next</button>
-  <div class="ref-mini"><b>Reference</b>: 5=efficient solve · 4=solved with detours · 3=progress but lacking · 2=many errors · 1=no progress</div>
+  <div class="sg"><label>评分</label><div class="sbtns" id="btns-score"></div></div>
+  <button class="btn" id="gobtn" disabled onclick="submitScore()">下一条 &rarr;</button>
+  <div class="ref-mini"><b>参考</b>：5=高效解决 · 4=有弯路但解决 · 3=有进展但不足 · 2=多处错误 · 1=无进展</div>
 </div>
 </div>
 
 <!-- ===== DONE ===== -->
 <div id="pg-done" class="page" style="display:none">
 <div class="card done-card">
-<h1 style="font-size:48px">Done!</h1><h2>Thank you for your evaluation!</h2>
-<p style="margin:14px 0">You have evaluated all 100 trajectories.</p>
-<button class="btn" onclick="downloadResults()" style="background:#27ae60">Download Results</button>
-<p style="color:#999;margin-top:12px;font-size:12px">Please send the downloaded JSON file to Yufeng He.</p>
+<h1 style="font-size:48px">&#127881;</h1><h2>全部完成！感谢你的评分！</h2>
+<p style="margin:14px 0">共评估了100条轨迹。</p>
+<button class="btn" onclick="downloadResults()" style="background:#27ae60">下载评分结果</button>
+<p style="color:#999;margin-top:12px;font-size:12px">请将下载的JSON文件发送给何宇峰。</p>
 </div></div>
 
 <script>
@@ -185,11 +185,11 @@ function showItem() {
   let done = loadResults();
   let doneCount = Object.keys(done).length;
 
-  document.getElementById('item-label').textContent = `Trajectory ${curItemIdx+1}/${items.length}`;
-  document.getElementById('rater-label').textContent = 'Rater #' + raterId;
+  document.getElementById('item-label').textContent = `第 ${curItemIdx+1}/${items.length} 条`;
+  document.getElementById('rater-label').textContent = '评分者 #' + raterId;
   document.getElementById('done-label').textContent = doneCount + '/' + items.length;
   document.getElementById('pfill').style.width = (doneCount/items.length*100) + '%';
-  document.getElementById('traj-header').textContent = `Trajectory (${it.messages.length} steps)`;
+  document.getElementById('traj-header').textContent = `轨迹（共 ${it.messages.length} 步）`;
   document.getElementById('traj-content').innerHTML = renderTraj(it.messages);
 
   // Reset score buttons
