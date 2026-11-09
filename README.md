@@ -1,71 +1,44 @@
-# TrajBias: Structural Biases in LLM-as-Judge Evaluation of Agent Trajectories
+# TrajBias Coding
 
-This repository contains the code and data for the paper:
+TrajBias studies how LLM-based evaluators score coding-agent trajectories under controlled changes to the information they receive.
 
-> **TrajBias: Structural Biases in LLM-as-Judge Evaluation of Agent Trajectories**
-> Yufeng He, The University of Hong Kong
+## Research status
 
-## Key Findings
+This is a research manuscript, not an accepted NeurIPS Datasets and Benchmarks paper or an accepted ACL/EMNLP paper. The earlier NeurIPS venue in this README's citation was an incorrect placeholder, not a publication record. The most recent recorded ARR cycle ended through a review-capacity lottery without scientific reviews.
 
-Through controlled perturbation experiments with 7 judge models from 7 families on coding agent trajectories, we discover:
+This public repository is an early code snapshot. It is not the current manuscript, a fully open benchmark release, or a complete reproduction package. Do not infer current results or submission status from the old script names or historical model aliases.
 
-1. **Error Recovery Penalty** (strongest): Trajectories with error recovery are systematically penalized (Cliff's delta up to 0.85, all p<0.001)
-2. **Recency Bias**: Later errors receive harsher penalties than identical errors earlier
-3. **Bidirectional Outcome Bias**: Outcome information contaminates process judgments in both directions, but opposing effects cancel in aggregate -- a methodological pitfall
-4. **Absent Length Bias**: Trajectory length does not influence scores, contradicting text-domain verbosity bias
-5. **Multidimensional Bias Robustness**: No single judge is universally least biased
+## Scope of the evidence
 
-## Dataset
+The study uses matched trajectory comparisons to distinguish score sensitivity from verified evaluation quality. Outcome labels, inserted error-and-recovery exchanges, error placement and a limited redundant-message manipulation address different questions and should not be combined into a universal bias claim.
 
-Available on HuggingFace: [yufenghe/trajbias-benchmark](https://huggingface.co/datasets/yufenghe/trajbias-benchmark)
+The previous README overstated some findings. In particular, lower scores after error-recovery insertion do not by themselves establish an inappropriate penalty, and a limited length manipulation does not show that verbosity never matters. Paired dominance is not interchangeable with independent-sample Cliff's delta. Historical judge aliases also do not authenticate request-level provider snapshots.
 
-Contains:
-- 2,400 controlled perturbation probe pairs (5 bias types)
-- 20,000+ evaluation scores from 7 judge models
-- Complete statistical analysis results
-- Croissant metadata
+For those reasons, the old headline effect sizes and blanket findings have been removed. This correction does not report a new experiment or release unpublished scores.
 
-## Repository Structure
+## What is in this repository
 
-```
-scripts/
-  bias_probes.py              # Generate perturbation probe pairs
-  run_w3_full_eval.py         # Run LLM judge evaluations
-  statistical_analysis_v2.py  # Statistical analysis (Cliff's delta, BH FDR)
-  generate_figures.py         # Generate paper figures
-  debiasing_experiments.py    # Debiasing strategy experiments
-  prepare_hf_dataset.py       # Prepare HuggingFace dataset
-```
+The `scripts/` directory contains early research scripts for perturbation generation, judge evaluation, statistical analysis, plotting and data-export preparation. Their presence does not establish that an exported dataset is available, rights-cleared or sufficient to reproduce the current manuscript. This README no longer presents an unverified dataset link as a complete benchmark release.
 
-## Requirements
+Some scripts can make billable model requests. Inspect their configuration, service terms and output paths before running them. This repository is not an invitation to replay unknown or interrupted requests.
 
-```bash
-pip install numpy scipy matplotlib
-```
+## Data and reuse
 
-## Judge Models Tested
+The current full trajectory and API-output archive is not cleared for upload or public redistribution. Public upstream repository text can retain incidental identifiers and third-party licensing obligations. Confidential reviewer companions are separate materials and carry no public redistribution permission.
 
-| Judge | Family |
-|-------|--------|
-| Claude Sonnet 4.5 | Anthropic |
-| GPT-5.2 | OpenAI |
-| Gemini 3 Pro | Google |
-| DeepSeek V3.2 | DeepSeek |
-| Qwen3-235B | Alibaba |
-| GLM-5 | Zhipu AI |
-| Kimi K2.5 | Moonshot AI |
+The existing MIT licence for code already released here is unchanged. This notice does not revoke permissions already granted for that code, and it does not grant new permissions over trajectories, provider outputs or confidential reviewer materials.
 
 ## Citation
 
+Until there is a verifiable publication record, cite the project as a research manuscript rather than conference proceedings:
+
 ```bibtex
-@inproceedings{he2026trajbias,
-  title={TrajBias: Structural Biases in LLM-as-Judge Evaluation of Agent Trajectories},
+@misc{he2026trajbias,
+  title={TrajBias-Coding: Outcome-Conditioned Score Sensitivity in LLM Evaluation of Coding-Agent Trajectories},
   author={He, Yufeng},
-  booktitle={NeurIPS Datasets and Benchmarks},
-  year={2026}
+  year={2026},
+  note={Research manuscript; not a conference acceptance},
+  howpublished={Public early-code repository},
+  url={https://github.com/he-yufeng/TrajBias}
 }
 ```
-
-## License
-
-MIT
